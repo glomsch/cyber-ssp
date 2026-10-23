@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d16">
+<title>CYBER-SSP – Arcade Schnick-Schnack-Schnuck</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap');
+:root{--bg:#090d16;--panel:#111827;--cyan:#06b6d4;--pink:#ec4899;--muted:#94a3b8}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background-color:var(--bg);background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:20px 20px;color:#f1f5f9;font-family:Rajdhani,sans-serif;touch-action:manipulation}
+button,input{font:inherit}button{cursor:pointer;color:inherit}button:disabled{opacity:.4;cursor:not-allowed}.arcade{font-family:Orbitron,sans-serif}.wrap{width:min(100% - 28px,480px);margin:auto;min-height:100dvh;display:flex;flex-direction:column}.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #1e293b}.brand{font:800 17px Orbitron,sans-serif;letter-spacing:1px;color:var(--cyan);text-shadow:0 0 12px #06b6d455}.status{font-size:12px;color:#cbd5e1;border:1px solid #334155;background:#0f172a;padding:5px 10px;border-radius:30px}.main{flex:1;display:flex;align-items:center;padding:18px 0}.screen{width:100%}.hidden{display:none!important}.intro{text-align:center;margin:0 0 18px}.intro h1{font:800 20px Orbitron,sans-serif;margin:0 0 7px}.sub{font-size:13px;color:var(--muted)}.panel,.modebtn,.scoreboard,.arena,.choice{background:#0f172aeF;border:1px solid #243044;border-radius:18px}.modebtn{width:100%;padding:15px;margin:7px 0;display:flex;align-items:center;gap:14px;text-align:left}.modebtn .ico{font-size:26px;width:44px;text-align:center}.modebtn strong{display:block;font:700 12px Orbitron,sans-serif;margin-bottom:5px}.modebtn small{font-size:12px;color:var(--muted)}.cyan{border-color:#06b6d477;box-shadow:0 0 14px #06b6d422}.cyan strong{color:var(--cyan)}.pink{border-color:#ec489977;box-shadow:0 0 14px #ec489922}.pink strong{color:var(--pink)}.panel{padding:20px;text-align:center;margin-bottom:12px}.panel h2{font:700 16px Orbitron,sans-serif;margin:0 0 8px}.panel p{color:var(--muted);font-size:13px}.input{width:100%;padding:12px;background:#020617;color:#fff;border:1px solid #334155;border-radius:12px;text-align:center;font-size:20px;letter-spacing:2px;margin:10px 0}.actions{display:flex;gap:8px}.btn{border:1px solid #334155;border-radius:12px;background:#1e293b;padding:10px 12px;font-weight:700;flex:1}.btn.primary{background:linear-gradient(100deg,#db2777,#e11d48);border-color:#ec4899}.btn.cyanbtn{background:#083344;border-color:#0891b2}.qr{display:flex;justify-content:center;background:white;border-radius:12px;padding:12px;width:max-content;margin:12px auto;min-height:20px}.scoreboard{display:grid;grid-template-columns:1fr 1fr;padding:12px;margin:12px 0;position:relative}.scoreboard:after{content:"";position:absolute;left:50%;top:10px;bottom:10px;border-left:1px solid #263244}.score{text-align:center}.score label{font-size:12px;color:var(--cyan);font-weight:700}.score:last-child label{color:var(--pink)}.score strong{display:block;font:900 32px Orbitron,sans-serif;margin-top:3px}.gamehead{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);gap:8px}.rules{font-size:11px;padding:6px 9px;border-radius:20px;border:1px solid #334155;background:#0f172a}.arena{height:200px;display:flex;align-items:center;justify-content:space-around;position:relative;overflow:hidden;background:#020617}.hand{text-align:center}.handbox{width:76px;height:76px;border:1px solid #334155;border-radius:18px;background:#0f172a;display:grid;place-items:center;font-size:37px;margin:0 auto 8px}.hand small{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.vs{font:900 17px Orbitron,sans-serif;color:#475569}.arenaStatus{position:absolute;bottom:8px;font-size:12px;border:1px solid #263244;background:#0f172add;padding:4px 12px;border-radius:20px;text-align:center;max-width:90%}.countdown{position:absolute;inset:0;z-index:2;background:#020617dd;display:grid;place-items:center;font:900 50px Orbitron,sans-serif;color:var(--cyan)}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.choice{padding:11px 5px;transition:.15s}.choice:active{transform:scale(.94)}.choice.selected{border-color:var(--cyan);background:#083344;box-shadow:0 0 15px #06b6d455}.choice .emoji{font-size:29px}.choice div:last-child{font-size:12px;font-weight:700;margin-top:3px}.extended{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.extended .choice{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px}.footerbuttons{display:flex;gap:8px;margin-top:10px}.footer{font-size:11px;text-align:center;color:#64748b;padding:10px 0 14px}.notice{font-size:12px;color:#fbbf24;margin-top:10px;min-height:16px}.muted{color:var(--muted)}@media(min-height:800px){.main{padding:30px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">🎮 CYBER-SSP</div><div class="status" id="status">● Bereit</div></header>
+<main class="main">
+<section class="screen" id="lobby">
+ <div class="intro"><h1>SPIELMODUS WÄHLEN</h1><div class="sub">Online per Peer-to-Peer oder lokal auf einem Gerät</div></div>
+ <button class="modebtn cyan" id="hostBtn"><span class="ico">▦</span><span><strong>SPIEL HOSTEN</strong><small>Raum-Code und QR-Code erstellen</small></span></button>
+ <button class="modebtn pink" id="joinBtn"><span class="ico">↗</span><span><strong>BEITRETEN</strong><small>Code oder Einladungslink nutzen</small></span></button>
+ <button class="modebtn" id="localBtn"><span class="ico">📱</span><span><strong>LOKALER MODUS</strong><small>Pass & Play auf einem Gerät</small></span></button>
+ <div class="notice" id="lobbyNotice"></div>
+</section>
+<section class="screen hidden" id="hostPanel">
+ <div class="panel"><h2 style="color:var(--cyan)">RAUM ERSTELLEN</h2><p>Teile den Code oder scanne den QR-Code mit dem zweiten Gerät.</p><div class="qr" id="qr"></div><p>Raum-Code / Peer-ID</p><div class="arcade" id="peerId" style="overflow-wrap:anywhere;color:var(--cyan);font-size:13px">Verbindung wird vorbereitet …</div><div class="actions" style="margin-top:14px"><button class="btn cyanbtn" id="copyBtn">Code kopieren</button><button class="btn" id="hostBack">Zurück</button></div><div class="notice" id="hostNotice">Warte auf Mitspieler …</div></div>
+</section>
+<section class="screen hidden" id="joinPanel">
+ <div class="panel"><h2 style="color:var(--pink)">RAUM BEITRETEN</h2><p>Füge den Raum-Code, die Peer-ID oder den kompletten Einladungslink ein.</p><input class="input" id="joinInput" maxlength="180" placeholder="Raum-Code / Link" autocomplete="off"><div class="actions"><button class="btn" id="joinBack">Zurück</button><button class="btn primary" id="connectBtn">Verbinden</button></div><div class="notice" id="joinNotice"></div></div>
+</section>
+<section class="screen hidden" id="game">
+ <div class="gamehead"><span id="modeLabel">Best-of-3 · Online</span><button class="rules" id="rulesBtn">Klassisch: 3 Optionen</button></div>
+ <div class="scoreboard"><div class="score"><label id="p1Label">DU</label><strong id="p1Score">0</strong></div><div class="score"><label id="p2Label">GEGNER</label><strong id="p2Score">0</strong></div></div>
+ <div class="arena"><div class="hand"><div class="handbox" id="p1Box">❔</div><small id="p1Caption">Deine Wahl</small></div><div class="vs">VS</div><div class="hand"><div class="handbox" id="p2Box">❔</div><small id="p2Caption">Gegner</small></div><div class="countdown hidden" id="countdown"></div><div class="arenaStatus" id="arenaStatus">Wähle deine Hand!</div></div>
+ <div class="choices" id="basicChoices">
+ <button class="choice" data-choice="rock"><div class="emoji">🪨</div><div>Stein</div></button>
+ <button class="choice" data-choice="paper"><div class="emoji">📄</div><div>Papier</div></button>
+ <button class="choice" data-choice="scissors"><div class="emoji">✂️</div><div>Schere</div></button>
+ </div>
+ <div class="extended hidden" id="extendedChoices">
+ <button class="choice" data-choice="lizard"><span class="emoji">🦎</span><b>Echse</b></button>
+ <button class="choice" data-choice="spock"><span class="emoji">🖖</span><b>Spock</b></button>
+ </div>
+ <div class="notice" id="gameNotice"></div>
+ <div class="footerbuttons"><button class="btn" id="resetBtn">↺ Score zurücksetzen</button><button class="btn" id="leaveBtn">⇥ Verlassen</button></div>
+</section>
+</main>
+<footer class="footer">Mobile Arcade · PeerJS & WebRTC · Internet für Online-Modus erforderlich</footer>
+</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const CHOICES={
+ rock:{emoji:'🪨',name:'Stein',beats:['scissors','lizard']},
+ paper:{emoji:'📄',name:'Papier',beats:['rock','spock']},
+ scissors:{emoji:'✂️',name:'Schere',beats:['paper','lizard']},
+ lizard:{emoji:'🦎',name:'Echse',beats:['spock','paper']},
+ spock:{emoji:'🖖',name:'Spock',beats:['scissors','rock']}
+};
+let peer=null,conn=null,isHost=false,localMode=false,extended=false,myChoice=null,opponentChoice=null,myScore=0,opponentScore=0,roundLocked=false,localTurn=1,localP1=null;
+let audioCtx=null;
+function sound(freq=520,duration=.09,type='sine'){try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.07,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
+function status(t){$('status').textContent='● '+t}
+function show(id){['lobby','hostPanel','joinPanel','game'].forEach(x=>$(x).classList.toggle('hidden',x!==id))}
+function setNotice(id,t){$(id).textContent=t||''}
+function resetArena(){myChoice=null;opponentChoice=null;roundLocked=false;$('p1Box').textContent='❔';$('p2Box').textContent='❔';$('arenaStatus').textContent=localMode?'Spieler 1: Wähle deine Hand!':'Wähle deine Hand!';$('gameNotice').textContent='';document.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));setChoiceButtons(true)}
+function setChoiceButtons(enabled){document.querySelectorAll('.choice').forEach(b=>b.disabled=!enabled||(!extended&&['lizard','spock'].includes(b.dataset.choice))||(extended===false&&b.closest('#extendedChoices')))}
+function renderScores(){$('p1Score').textContent=myScore;$('p2Score').textContent=opponentScore}
+function initGame(local=false){localMode=local;myScore=0;opponentScore=0;localTurn=1;renderScores();$('p1Label').textContent=local?'SPIELER 1':(isHost?'DU · HOST':'DU');$('p2Label').textContent=local?'SPIELER 2':'GEGNER';$('p1Caption').textContent=local?'Spieler 1':'Deine Wahl';$('p2Caption').textContent=local?'Spieler 2':'Gegner';$('modeLabel').textContent=local?'Lokal · Pass & Play':'Online · Best-of-3';$('rulesBtn').textContent=extended?'Echse & Spock: 5 Optionen':'Klassisch: 3 Optionen';$('basicChoices').classList.toggle('hidden',extended);$('extendedChoices').classList.toggle('hidden',!extended);show('game');status(local?'Lokal':(conn&&conn.open?'Verbunden':'Verbunden'));resetArena()}
+function setExtended(){extended=!extended;$('rulesBtn').textContent=extended?'Echse & Spock: 5 Optionen':'Klassisch: 3 Optionen';$('basicChoices').classList.toggle('hidden',extended);$('extendedChoices').classList.toggle('hidden',!extended);if(conn&&conn.open)send({type:'rules',extended});resetArena()}
+function send(data){if(conn&&conn.open){try{conn.send(data)}catch(e){setNotice('gameNotice','Senden fehlgeschlagen. Verbindung prüfen.')}}}
+function setupConnection(c,hostSide){conn=c;isHost=hostSide;c.on('open',()=>{status('Online');show('game');initGame(false);if(isHost)send({type:'hello',extended});else send({type:'hello',extended});setNotice('gameNotice','Verbunden – Runde starten!')});c.on('data',onMessage);c.on('close',()=>{status('Getrennt');setNotice('gameNotice','Verbindung verloren. Du kannst das Spiel verlassen und neu verbinden.')});c.on('error',e=>setNotice('gameNotice','Verbindungsfehler: '+(e.message||'unbekannt')))}
+function onMessage(msg){if(!msg||typeof msg!=='object')return;if(msg.type==='hello'){if(typeof msg.extended==='boolean'&&msg.extended!==extended){extended=msg.extended;$('rulesBtn').textContent=extended?'Echse & Spock: 5 Optionen':'Klassisch: 3 Optionen';$('basicChoices').classList.toggle('hidden',extended);$('extendedChoices').classList.toggle('hidden',!extended)}}
+ if(msg.type==='choice'){if(!CHOICES[msg.choice])return;opponentChoice=msg.choice;$('arenaStatus').textContent='Beide haben gewählt – Ergebnis!';if(myChoice)revealOnline()}
+ if(msg.type==='reset'){myScore=0;opponentScore=0;renderScores();resetArena()}
+ if(msg.type==='rules'){extended=!!msg.extended;$('rulesBtn').textContent=extended?'Echse & Spock: 5 Optionen':'Klassisch: 3 Optionen';$('basicChoices').classList.toggle('hidden',extended);$('extendedChoices').classList.toggle('hidden',!extended);resetArena()}
+ if(msg.type==='leave'){setNotice('gameNotice','Der Gegner hat das Spiel verlassen.')}
+}
+function startHosting(){setNotice('lobbyNotice','');show('hostPanel');$('peerId').textContent='Verbindung wird vorbereitet …';$('qr').innerHTML='';setNotice('hostNotice','Verbinde mit PeerJS …');status('Verbinde');destroyPeer();if(!window.Peer){setNotice('hostNotice','PeerJS konnte nicht geladen werden. Internetverbindung prüfen.');return}
+ peer=new Peer(undefined,{debug:1});peer.on('open',id=>{$('peerId').textContent=id;const url=new URL(location.href);url.hash='peer='+encodeURIComponent(id);if(location.protocol!=='file:'){new QRCode($('qr'),{text:url.href,width:180,height:180,colorDark:'#020617',colorLight:'#ffffff'});}else{$('qr').textContent='Für QR-Einladung bitte diese HTML-Datei über eine HTTPS-Webseite öffnen.'}setNotice('hostNotice','Warte auf Mitspieler …');status('Warte')});
+ peer.on('connection',c=>{if(conn&&conn.open){c.close();return}setupConnection(c,true)});peer.on('error',e=>{setNotice('hostNotice','PeerJS-Fehler: '+(e.type||e.message||'Verbindung fehlgeschlagen'));status('Fehler')})}
+function parsePeerId(raw){let s=raw.trim();try{if(/^https?:\/\//i.test(s)){const u=new URL(s);const h=u.hash.replace(/^#/,'');const params=new URLSearchParams(h);s=params.get('peer')||h||s}}catch(e){}return s.replace(/^peer=/,'').trim()}
+function connectToHost(){let id=parsePeerId($('joinInput').value);if(!id){setNotice('joinNotice','Bitte Raum-Code oder Einladungslink eingeben.');return}if(!window.Peer){setNotice('joinNotice','PeerJS konnte nicht geladen werden. Internetverbindung prüfen.');return}setNotice('joinNotice','Verbinde …');status('Verbinde');destroyPeer();peer=new Peer(undefined,{debug:1});peer.on('open',()=>{const c=peer.connect(id,{reliable:true});setupConnection(c,false);const timer=setTimeout(()=>{if(!c.open)setNotice('joinNotice','Noch keine Verbindung. Code prüfen und Host geöffnet lassen.')},9000);c.on('open',()=>clearTimeout(timer))});peer.on('error',e=>{setNotice('joinNotice','Verbindung fehlgeschlagen: '+(e.type||e.message||'Code prüfen'));status('Fehler')})}
+function destroyPeer(){if(conn){try{conn.close()}catch(e){}conn=null}if(peer){try{peer.destroy()}catch(e){}peer=null}}
+function cancelLobby(){destroyPeer();status('Bereit');show('lobby')}
+function copyPeerId(){const id=$('peerId').textContent;if(!id||id.includes('…'))return;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(id).then(()=>setNotice('hostNotice','Code kopiert!')).catch(()=>prompt('Raum-Code kopieren:',id));else prompt('Raum-Code kopieren:',id)}
+function makeChoice(key){if(roundLocked||!CHOICES[key]||(!extended&&['lizard','spock'].includes(key)))return;sound(600,.07);if(navigator.vibrate)navigator.vibrate(25);
+ if(localMode){if(localTurn===1){localP1=key;localTurn=2;$('p1Box').textContent=CHOICES[key].emoji;$('p2Box').textContent='❔';$('arenaStatus').textContent='Spieler 2: Wähle deine Hand';$('p1Caption').textContent='Spieler 1 ✓';$('p2Caption').textContent='Spieler 2 – du bist dran';setChoiceButtons(true);return}else{myChoice=localP1;opponentChoice=key;localTurn=1;revealLocal();return}}
+ if(!conn||!conn.open){setNotice('gameNotice','Keine Online-Verbindung. Bitte neu verbinden oder lokal spielen.');return}
+ myChoice=key;roundLocked=true;$('p1Box').textContent=CHOICES[key].emoji;$('arenaStatus').textContent='Warte auf Gegner …';document.querySelectorAll('.choice').forEach(b=>b.classList.toggle('selected',b.dataset.choice===key));setChoiceButtons(false);send({type:'choice',choice:key});if(opponentChoice)revealOnline()}
+function winner(a,b){if(a===b)return 0;return CHOICES[a].beats.includes(b)?1:-1}
+function showResult(a,b,local=false){const r=winner(a,b);if(r===0){$('arenaStatus').textContent='UNENTSCHIEDEN!';sound(420,.16)}else if(r===1){myScore++;$('arenaStatus').textContent=(local?'SPIELER 1':'DU')+' GEWINNST!';sound(780,.25)}else{opponentScore++;$('arenaStatus').textContent=(local?'SPIELER 2':'GEGNER')+' GEWINNT!';sound(180,.3,'sawtooth')}renderScores();$('gameNotice').textContent=CHOICES[a].name+' gegen '+CHOICES[b].name+(r===0?' – Gleichstand!':r===1?' – '+CHOICES[a].name+' gewinnt.':' – '+CHOICES[b].name+' gewinnt.');setChoiceButtons(true);roundLocked=true}
+function revealOnline(){if(!myChoice||!opponentChoice)return;$('p1Box').textContent=CHOICES[myChoice].emoji;$('p2Box').textContent=CHOICES[opponentChoice].emoji;showResult(myChoice,opponentChoice);setTimeout(()=>{if(conn&&conn.open){resetArena()}},2300)}
+function revealLocal(){const a=myChoice,b=opponentChoice;$('p1Box').textContent=CHOICES[a].emoji;$('p2Box').textContent=CHOICES[b].emoji;$('p1Caption').textContent='Spieler 1';$('p2Caption').textContent='Spieler 2';showResult(a,b,true);setTimeout(()=>{resetArena();$('p1Caption').textContent='Spieler 1';$('p2Caption').textContent='Spieler 2'},2200)}
+function resetScore(){myScore=0;opponentScore=0;renderScores();resetArena();if(conn&&conn.open)send({type:'reset'})}
+function leaveGame(){send({type:'leave'});destroyPeer();localMode=false;status('Bereit');show('lobby');setNotice('lobbyNotice','')}
+$('hostBtn').addEventListener('click',startHosting);$('joinBtn').addEventListener('click',()=>{show('joinPanel');setNotice('joinNotice','')});$('localBtn').addEventListener('click',()=>{destroyPeer();isHost=false;initGame(true)});$('hostBack').addEventListener('click',cancelLobby);$('joinBack').addEventListener('click',cancelLobby);$('connectBtn').addEventListener('click',connectToHost);$('copyBtn').addEventListener('click',copyPeerId);$('rulesBtn').addEventListener('click',setExtended);$('resetBtn').addEventListener('click',resetScore);$('leaveBtn').addEventListener('click',leaveGame);document.querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>makeChoice(b.dataset.choice)));
+const hash=location.hash;if(hash.startsWith('#peer=')){show('joinPanel');$('joinInput').value=decodeURIComponent(hash.slice(6));}
+</script>
+</body>
+</html>
